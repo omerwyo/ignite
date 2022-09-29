@@ -33,6 +33,6 @@ class MainGameState extends State<MainGamePage> {
   }
 
   void onJoypadDirectionChanged(Direction direction) {
-    // TODO 2
+    game.onJoypadDirectionChanged(direction);
   }
 }
