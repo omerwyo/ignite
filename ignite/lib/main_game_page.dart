@@ -67,24 +67,6 @@ class LogInState extends State<LogInPage> {
             fontSize: 40.0,
           ),
         ),
-        // body: Stack(
-        //   children: [
-        //     Align(
-        //       alignment: Alignment.bottomRight,
-        //       child: Padding(
-        //         padding: const EdgeInsets.all(32.0),
-        //       ),
-        //     ),
-        //     TextButton(
-        //       onPressed: () {
-        //         Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //           return const MainGamePage();
-        //         }));
-        //       },
-        //       child: const Text('Back'),
-        //     ),
-        //   ],
-        // )
         ));
         
   }
