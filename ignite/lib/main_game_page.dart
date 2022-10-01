@@ -55,7 +55,6 @@ class LogInPage extends StatefulWidget {
 }
 
 class LogInState extends State<LogInPage> {
-  final String hamburger = 'assets/images/hamburger.svg';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +66,7 @@ class LogInState extends State<LogInPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      drawer: Drawer(
+      endDrawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
         // space to fit everything.
