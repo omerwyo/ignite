@@ -4,7 +4,6 @@ import 'helpers/joypad.dart';
 import 'package:flame/game.dart';
 import 'contri_side_game.dart';
 
-
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
 
@@ -13,11 +12,10 @@ class LogInPage extends StatefulWidget {
 }
 
 class LogInState extends State<LogInPage> {
-  // ContriSideGame game = ContriSideGame();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
+        backgroundColor: Color.fromARGB(234, 255, 255, 255),
         body: Stack(
           children: [
             // GameWidget(game: game),
@@ -25,14 +23,9 @@ class LogInState extends State<LogInPage> {
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                // child: Joypad(onDirectionChanged: onJoypadDirectionChanged),
               ),
             )
           ],
         ));
   }
-
-  // void onJoypadDirectionChanged(Direction direction) {
-  //   game.onJoypadDirectionChanged(direction);
-  // }
 }

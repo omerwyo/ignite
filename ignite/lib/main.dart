@@ -12,25 +12,20 @@ Future<void> main() async {
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
-  // @override
+  @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ContriSide',
       home: MainGamePage(),
-      // login: LogInPage()
     );
   }
 }
 
 class LogInPage extends StatelessWidget {
   Widget build(BuildContext context) {
-    return const Container(
-      // debugShowCheckedModeBanner: false,
-      title: 'LogIn',
+    return Container(
       alignment: Alignment.center,
-      home: Text('Log In Page'),
-      // home: LogInPage()
     );
   }
 }
