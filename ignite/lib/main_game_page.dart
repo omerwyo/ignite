@@ -33,7 +33,10 @@ class MainGameState extends State<MainGamePage> {
                   return const LogInPage();
                 }));
               },
-              child: const Text('Next'),
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: const Text('Next'),
+              ),
             ),
           ],
         ));
@@ -55,19 +58,25 @@ class LogInPage extends StatefulWidget {
 class LogInState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.black,
+              ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
         ), 
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        body: const Center(
-        child: Text(
-          "LEADERBOARD",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 40.0,
+        body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.png"),
+            fit: BoxFit.cover,
           ),
         ),
-        ));
+        child: null
+      ),
+    );
         
   }
 }
