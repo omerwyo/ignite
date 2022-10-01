@@ -110,19 +110,160 @@ class LogInState extends State<LogInPage> {
           ],
         ),
       ),
-      body: Container(
+      // body: Container(
+      //   // ignore: sort_child_properties_last
+      //   // color: const Color.fromRGBO(0, 0, 0, 1),
+      //   child: Center(
+      //     // fit: BoxFit.fitWidth, 
+      //     child: Text('Leaderboard'),
+      //     heightFactor: 190.0,
+      //     widthFactor: MediaQuery.of(context).size.width - 100.0,
+      //   ),
+      //   decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //       image: AssetImage("assets/images/background.png"),
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      // ),
+
+
+      body: Stack(
         // ignore: sort_child_properties_last
-        child: Center(
-          child: Text('Leaderboard'),
-          heightFactor: 190.0,
-          widthFactor: MediaQuery.of(context).size.width - 100.0,
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background.png"),
-            fit: BoxFit.cover,
+        // color: const Color.fromRGBO(0, 0, 0, 1),
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
+          Container(
+            child: Center(
+              child: Text('Leaderboard',
+              style: TextStyle(
+                fontSize: 28, 
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 300.0,
+            height: 80,
+            margin: const EdgeInsets.only(top: 200.0, left: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('',
+              style: TextStyle(
+                fontSize: 28, 
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 300.0,
+            height: 450,
+            margin: const EdgeInsets.only(top: 330.0, left: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xffFFDF8F).withOpacity(0.8),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('        Cheryl              |   112',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 270.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 377.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('       Samuel        |   110',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 250.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 447.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('        Patrick      |   105',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 235.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 517.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 45.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar1.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 95.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar2.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 235.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar3.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar4.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar5.png"),
+            ),
+            ),
+          ),
+        ]
       ),
     );
   }
