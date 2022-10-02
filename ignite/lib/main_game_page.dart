@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'helpers/direction.dart';
 import 'helpers/joypad.dart';
 import 'package:flame/game.dart';
 import 'contri_side_game.dart';
+import 'package:dio/dio.dart';
 
 class MainGamePage extends StatefulWidget {
   const MainGamePage({Key? key}) : super(key: key);
@@ -56,6 +60,30 @@ class LogInPage extends StatefulWidget {
 }
 
 class LogInState extends State<LogInPage> {
+  late Response response;
+  Dio dio = Dio();
+
+  bool loading = false; //for data fetching status
+  // ignore: prefer_typing_uninitialized_variables
+  var apidata; //for decoded JSON data
+  int count = 0;
+
+  @override
+  void initState() {
+    getData(); //fetching data
+    super.initState();
+  }
+
+  getData() async {
+    setState(() {
+      loading = true; //make loading true to show progressindicator
+    });
+    Response response = await dio.get('http://3.15.138.42/user');
+    apidata = response.data; //get JSON decoded data from response
+    loading = false;
+    setState(() {}); //refresh UI
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,26 +183,22 @@ class LogInState extends State<LogInPage> {
                 borderRadius: const BorderRadius.all(Radius.circular(40)),
                 color: const Color(0xffFFDF8F).withOpacity(0.8),
               ),
-              child: SingleChildScrollView(
-                child: Stack(
-                  children: const <Widget>[
-                    LeaderBoardBar(hours: 131, index: 1, userName: "Cheryl"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 122, index: 2, userName: "Samuel"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 103, index: 3, userName: "Patrick"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 97, index: 4, userName: "Charlotte"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 92, index: 5, userName: "Sam"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 89, index: 6, userName: "Paisley"),
-                    SizedBox(width: 50),
-                    LeaderBoardBar(hours: 88, index: 7, userName: "Chloe"),
-                    SizedBox(width: 50),
-                  ],
-                ),
-              ),
+              child: loading
+                  ? const CircularProgressIndicator()
+                  : SingleChildScrollView(
+                      child: Stack(
+                        children: apidata.map<Widget>((user) {
+                          count += 1;
+                          return Stack(children: [
+                            LeaderBoardBar(
+                                hours: user['hours'],
+                                index: count,
+                                userName: user['firstName']),
+                            const SizedBox(width: 50)
+                          ]);
+                        }).toList(),
+                      ),
+                    ),
             ),
           ]),
     );
