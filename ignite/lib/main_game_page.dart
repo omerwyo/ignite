@@ -9,6 +9,134 @@ import 'package:flame/game.dart';
 import 'contri_side_game.dart';
 import 'package:dio/dio.dart';
 
+// Components
+class CSBar extends StatelessWidget {
+  const CSBar({
+    Key? key,
+    required this.hours,
+    required this.index,
+    required this.userName,
+    required this.user,
+  }) : super(key: key);
+
+  final int hours;
+  final int index; // used to assign avatar image
+  final String userName;
+  final String user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // Calculate width
+        width: 285,
+        height: 115,
+        // margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5, bottom: 500),
+        margin: EdgeInsets.only(top: index * 150 - 130, left: 5),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          // color: const Color(0xff40848F).withOpacity(1),
+          color: const Color(0xff40848F).withOpacity(1),
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
+              width: 35.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/$user.png"),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  userName,
+                  style: GoogleFonts.openSans(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                )),
+            const SizedBox(width: 5),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                '',
+                textAlign: TextAlign.right,
+                style: GoogleFonts.openSans(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 20),
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+class LeaderBoardBar extends StatelessWidget {
+  const LeaderBoardBar({
+    Key? key,
+    required this.hours,
+    required this.index,
+    required this.userName,
+  }) : super(key: key);
+
+  final int hours;
+  final int index; // used to assign avatar image
+  final String userName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        // Calculate width
+        width: 285 * (hours / 131),
+        height: 45,
+        margin: EdgeInsets.only(top: 30.0 + (index - 1) * 70, left: 5),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
+          color: const Color(0xff40848F).withOpacity(1),
+        ),
+        child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
+              width: 35.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/avatar$index.png"),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  userName,
+                  style: GoogleFonts.openSans(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                )),
+            const SizedBox(width: 5),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                '- $hours',
+                textAlign: TextAlign.right,
+                style: GoogleFonts.openSans(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 20),
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+// MainMap page
 class MainGamePage extends StatefulWidget {
   const MainGamePage({Key? key}) : super(key: key);
 
@@ -38,11 +166,6 @@ class MainGameState extends State<MainGamePage> {
                   return const LogInPage();
                 }));
               },
-              // child: const Padding(
-              //   padding: EdgeInsets.only(left: 16.0, top: 38.0),
-              // child: Text('Leaderboard',
-              //     style: TextStyle(fontSize: 15, color: Color(0xffF02E65)),
-              // ),
               child: Container(
                 // padding: EdgeInsets.only(left: 16.0, top: 38.0),
                 width: 110.0,
@@ -68,6 +191,7 @@ class MainGameState extends State<MainGamePage> {
   }
 }
 
+// Leaderboard Page
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
 
@@ -136,20 +260,17 @@ class LogInState extends State<LogInPage> {
                   leading: const Icon(Icons.map),
                   title: const Text('Map'),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
                     Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const MainGamePage();
+                    }));
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.leaderboard_rounded),
                   title: const Text('Leaderboard'),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const CSPage();
-                    }));
                     Navigator.pop(context);
                   },
                 ),
@@ -157,6 +278,7 @@ class LogInState extends State<LogInPage> {
                   leading: const Icon(Icons.search),
                   title: const Text('Discover'),
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       return const CSPage();
@@ -222,67 +344,7 @@ class LogInState extends State<LogInPage> {
   }
 }
 
-class LeaderBoardBar extends StatelessWidget {
-  const LeaderBoardBar({
-    Key? key,
-    required this.hours,
-    required this.index,
-    required this.userName,
-  }) : super(key: key);
-
-  final int hours;
-  final int index; // used to assign avatar image
-  final String userName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        // Calculate width
-        width: 285 * (hours / 131),
-        height: 45,
-        margin: EdgeInsets.only(top: 30.0 + (index - 1) * 70, left: 5),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(40)),
-          color: const Color(0xff40848F).withOpacity(1),
-        ),
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
-              width: 35.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/avatar$index.png"),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  userName,
-                  style: GoogleFonts.openSans(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                )),
-            const SizedBox(width: 5),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                '- $hours',
-                textAlign: TextAlign.right,
-                style: GoogleFonts.openSans(
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 20),
-              ),
-            ),
-          ],
-        ));
-  }
-}
-
+// Community Service Projects page
 class CSPage extends StatefulWidget {
   const CSPage({Key? key}) : super(key: key);
 
@@ -327,37 +389,30 @@ class CSState extends State<CSPage> {
                   leading: const Icon(Icons.map),
                   title: const Text('Map'),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
                     Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const MainGamePage();
+                    }));
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.leaderboard_rounded),
                   title: const Text('Leaderboard'),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
                     Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const LogInPage();
+                    }));
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.search),
                   title: const Text('Discover'),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const LogInPage();
-                    }));
+                    Navigator.pop(context);
                   },
-                  // onTap: () {
-                  //   // Update the state of the app
-                  //   // ...
-                  //   // Then close the drawer
-                  //   Navigator.pop(context);
-                  // },
                 ),
               ],
             ),
@@ -496,70 +551,5 @@ class CSState extends State<CSPage> {
             ),
           ]),
     );
-  }
-}
-
-class CSBar extends StatelessWidget {
-  const CSBar({
-    Key? key,
-    required this.hours,
-    required this.index,
-    required this.userName,
-    required this.user,
-  }) : super(key: key);
-
-  final int hours;
-  final int index; // used to assign avatar image
-  final String userName;
-  final String user;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        // Calculate width
-        width: 285,
-        height: 115,
-        // margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5, bottom: 500),
-        margin: EdgeInsets.only(top: index * 150 - 130, left: 5),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          // color: const Color(0xff40848F).withOpacity(1),
-          color: const Color(0xff40848F).withOpacity(1),
-        ),
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
-              width: 35.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/$user.png"),
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  userName,
-                  style: GoogleFonts.openSans(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                )),
-            const SizedBox(width: 5),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                '',
-                textAlign: TextAlign.right,
-                style: GoogleFonts.openSans(
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 20),
-              ),
-            ),
-          ],
-        ));
   }
 }
