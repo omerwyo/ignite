@@ -219,6 +219,38 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
+            child: Center(
+              child: Text('       Chloe      |   99',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 220.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 587.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('     Sam      |   82',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 205.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 657.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
             margin: const EdgeInsets.only(bottom: 45.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
@@ -246,7 +278,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 285.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
@@ -255,7 +287,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 335.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
