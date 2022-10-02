@@ -1,10 +1,12 @@
 import 'package:flame/components.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 
 class World extends SpriteComponent with HasGameRef {
   @override
   Future<void>? onLoad() async {
-    sprite = await gameRef.loadSprite('contriside_background.png');
+    sprite = await gameRef.loadSprite('contri_map.png');
     size = sprite!.originalSize;
+    // print(size);
     return super.onLoad();
   }
 }

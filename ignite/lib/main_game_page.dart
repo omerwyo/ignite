@@ -110,7 +110,7 @@ class LogInState extends State<LogInPage> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.search),
-                  title: const Text('Search'),
+                  title: const Text('Discover'),
                   onTap: () {
                     // Update the state of the app
                     // ...
@@ -196,7 +196,7 @@ class LeaderBoardBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Calculate width
+        // Calculate width
         width: 285 * (hours / 131),
         height: 45,
         margin: EdgeInsets.only(top: 30.0 + (index - 1) * 70, left: 5),
