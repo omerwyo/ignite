@@ -38,9 +38,25 @@ class MainGameState extends State<MainGamePage> {
                   return const LogInPage();
                 }));
               },
-              child: const Padding(
-                padding: EdgeInsets.all(32.0),
-                child: Text('Leaderboard'),
+              // child: const Padding(
+              //   padding: EdgeInsets.only(left: 16.0, top: 38.0),
+              // child: Text('Leaderboard',
+              //     style: TextStyle(fontSize: 15, color: Color(0xffF02E65)),
+              // ),
+              child: Container(
+                // padding: EdgeInsets.only(left: 16.0, top: 38.0),
+                width: 110.0,
+                height: 45,
+                margin: const EdgeInsets.only(left: 14.0, top: 38.0),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(40)),
+                  color: const Color(0xffFFDF8F).withOpacity(0.8),
+                ),
+                child: const Center(
+                    child: Text(
+                  'Leaderboard',
+                  style: TextStyle(fontSize: 15, color: Colors.teal),
+                )),
               ),
             ),
           ],
@@ -130,9 +146,10 @@ class LogInState extends State<LogInPage> {
                   leading: const Icon(Icons.leaderboard_rounded),
                   title: const Text('Leaderboard'),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const CSPage();
+                    }));
                     Navigator.pop(context);
                   },
                 ),
@@ -140,7 +157,8 @@ class LogInState extends State<LogInPage> {
                   leading: const Icon(Icons.search),
                   title: const Text('Discover'),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return const CSPage();
                     }));
                   },
@@ -329,7 +347,8 @@ class CSState extends State<CSPage> {
                   leading: const Icon(Icons.search),
                   title: const Text('Discover'),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return const LogInPage();
                     }));
                   },
@@ -393,11 +412,11 @@ class CSState extends State<CSPage> {
               ),
               child: const Center(
                 child: Text('< Weekly',
-                    style:
-                        TextStyle(
-                          fontSize: 14, 
-                          fontWeight: FontWeight.bold, 
-                          color: Colors.white,)),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )),
               ),
             ),
             Container(
@@ -410,11 +429,11 @@ class CSState extends State<CSPage> {
               ),
               child: const Center(
                 child: Text('< Primary',
-                    style:
-                        TextStyle(
-                          fontSize: 14, 
-                          fontWeight: FontWeight.bold, 
-                          color: Colors.white,)),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )),
               ),
             ),
             Container(
@@ -427,11 +446,11 @@ class CSState extends State<CSPage> {
               ),
               child: const Center(
                 child: Text('< Tuition',
-                    style:
-                        TextStyle(
-                          fontSize: 14, 
-                          fontWeight: FontWeight.bold, 
-                          color: Colors.white,)),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )),
               ),
             ),
             Container(
@@ -445,11 +464,23 @@ class CSState extends State<CSPage> {
               child: SingleChildScrollView(
                 child: Stack(
                   children: const <Widget>[
-                    CSBar(hours: 120, index: 1, userName: "Brighton", user: "brighton"),
+                    CSBar(
+                        hours: 120,
+                        index: 1,
+                        userName: "Brighton",
+                        user: "brighton"),
                     SizedBox(width: 50),
-                    CSBar(hours: 122, index: 2, userName: "Bukit Batok", user: "bukit"),
+                    CSBar(
+                        hours: 122,
+                        index: 2,
+                        userName: "Bukit Batok",
+                        user: "bukit"),
                     SizedBox(width: 50),
-                    CSBar(hours: 103, index: 3, userName: "Heartware", user: "sg"),
+                    CSBar(
+                        hours: 103,
+                        index: 3,
+                        userName: "Heartware",
+                        user: "sg"),
                     SizedBox(width: 50),
                     // CSBar(hours: 97, index: 4, userName: "Charlotte", user: "brighton"),
                     // SizedBox(width: 50),
@@ -489,7 +520,7 @@ class CSBar extends StatelessWidget {
         width: 285,
         height: 115,
         // margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5, bottom: 500),
-        margin: EdgeInsets.only(top:index * 150 - 130, left: 5),
+        margin: EdgeInsets.only(top: index * 150 - 130, left: 5),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           // color: const Color(0xff40848F).withOpacity(1),
@@ -532,4 +563,3 @@ class CSBar extends StatelessWidget {
         ));
   }
 }
-
