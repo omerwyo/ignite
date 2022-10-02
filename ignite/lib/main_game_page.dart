@@ -496,7 +496,7 @@ class CSBar extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                '- $hours',
+                '',
                 textAlign: TextAlign.right,
                 style: GoogleFonts.openSans(
                     color: Colors.white,
