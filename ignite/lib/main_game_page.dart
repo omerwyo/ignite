@@ -463,11 +463,12 @@ class CSBar extends StatelessWidget {
     return Container(
         // Calculate width
         width: 285,
-        height: 75,
+        height: 115,
         // margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5, bottom: 500),
-        margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5),
+        margin: EdgeInsets.only(top:index * 150 - 130, left: 5),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
+          // color: const Color(0xff40848F).withOpacity(1),
           color: const Color(0xff40848F).withOpacity(1),
         ),
         child: Row(
