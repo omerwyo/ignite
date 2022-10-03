@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'helpers/direction.dart';
@@ -19,7 +18,6 @@ class CSBar extends StatelessWidget {
     required this.userName,
     required this.user,
   }) : super(key: key);
-
 
   final int hours;
   final int index; // used to assign avatar image
@@ -213,6 +211,7 @@ class LogInState extends State<LogInPage> {
   @override
   void initState() {
     getData(); //fetching data
+    count = 0;
     super.initState();
   }
 
@@ -301,6 +300,12 @@ class LogInState extends State<LogInPage> {
                   fit: BoxFit.cover,
                 ),
               ),
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage("assets/images/contrisidelogo.png"),
+              )),
             ),
             Container(
               width: 300.0,
@@ -419,242 +424,130 @@ class CSState extends State<CSPage> {
               ],
             ),
           )),
-      body: Stack(
-          // ignore: sort_child_properties_last
-          // color: const Color.fromRGBO(0, 0, 0, 1),
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/background.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text('Leaderboard',
-              style: TextStyle(
-                fontSize: 28, 
-                fontWeight: FontWeight.bold)),
-            ),
-            width: 300.0,
-            height: 80,
-            margin: const EdgeInsets.only(top: 200.0, left: 40),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text('',
-              style: TextStyle(
-                fontSize: 28, 
-                fontWeight: FontWeight.bold)),
-            ),
-            width: 300.0,
-            height: 450,
-            margin: const EdgeInsets.only(top: 330.0, left: 40),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-              color: Color(0xffFFDF8F).withOpacity(0.8),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text('        Cheryl              |   112',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold)),
-            ),
-            width: 270.0,
-            height: 45,
-            margin: const EdgeInsets.only(top: 377.0, left: 56),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-              color: Color(0xff40848F).withOpacity(1),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text('       Samuel        |   110',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold)),
-            ),
-            width: 250.0,
-            height: 45,
-            margin: const EdgeInsets.only(top: 447.0, left: 56),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-              color: Color(0xff40848F).withOpacity(1),
-            ),
-          ),
-          Container(
-            child: Center(
-              child: Text('        Patrick      |   105',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold)),
-            ),
-            width: 235.0,
-            height: 45,
-            margin: const EdgeInsets.only(top: 517.0, left: 56),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-              color: Color(0xff40848F).withOpacity(1),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 70.0, left: 70.0),
-            width: 35.0,
-            decoration: BoxDecoration(
+      body: Stack(children: [
+        Container(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/avatar1.png"),
-            ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 210.0, left: 70.0),
-            width: 35.0,
-            decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/avatar2.png"),
-            ),
+              image: AssetImage("assets/images/background.png"),
+              fit: BoxFit.cover,
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 350.0, left: 70.0),
-            width: 35.0,
-            decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/avatar3.png"),
-            Container(
-              width: 300.0,
-              height: 80,
-              margin: const EdgeInsets.only(top: 110.0, left: 40),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              child: const Center(
-                child: Text('        COMMUNITY  \n SERVICE PROJECTS',
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              ),
+        ),
+        Container(
+          width: 300.0,
+          height: 80,
+          margin: const EdgeInsets.only(top: 110.0, left: 40),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          child: const Center(
+            child: Text('        COMMUNITY  \n SERVICE PROJECTS',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ),
+        ),
+        Container(
+          width: 300.0,
+          height: 80,
+          margin: const EdgeInsets.only(top: 220.0, right: 220),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            // color: Color.fromARGB(255, 255, 255, 255),
+          ),
+          child: const Center(
+            child: Text('Filters:',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+        ),
+        Container(
+          width: 100.0,
+          height: 30,
+          margin: const EdgeInsets.only(top: 245.0, left: 260),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            color: const Color(0xff40848F),
+          ),
+          child: const Center(
+            child: Text('< Weekly',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
+          ),
+        ),
+        Container(
+          width: 100.0,
+          height: 30,
+          margin: const EdgeInsets.only(top: 245.0, left: 140),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            color: const Color(0xff40848F),
+          ),
+          child: const Center(
+            child: Text('< Primary',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
+          ),
+        ),
+        Container(
+          width: 100.0,
+          height: 30,
+          margin: const EdgeInsets.only(top: 295.0, left: 50),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(40)),
+            color: const Color(0xff40848F),
+          ),
+          child: const Center(
+            child: Text('< Tuition',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
+          ),
+        ),
+        Container(
+          width: 300.0,
+          height: 450,
+          margin: const EdgeInsets.only(top: 330.0, left: 40),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(40)),
+            color: const Color(0xffFFDF8F).withOpacity(0.8),
+          ),
+          child: SingleChildScrollView(
+            child: Stack(
+              children: const <Widget>[
+                CSBar(
+                    hours: 120,
+                    index: 1,
+                    userName: "Brighton",
+                    user: "brighton"),
+                SizedBox(width: 50),
+                CSBar(
+                    hours: 122,
+                    index: 2,
+                    userName: "Bukit Batok",
+                    user: "bukit"),
+                SizedBox(width: 50),
+                CSBar(hours: 103, index: 3, userName: "Heartware", user: "sg"),
+                SizedBox(width: 50),
+                // CSBar(hours: 97, index: 4, userName: "Charlotte", user: "brighton"),
+                // SizedBox(width: 50),
+                // CSBar(hours: 92, index: 5, userName: "Sam", user: "brighton"),
+                // SizedBox(width: 50),
+                // CSBar(hours: 89, index: 6, userName: "Paisley", user: "brighton"),
+                // SizedBox(width: 50),
+                // CSBar(hours: 88, index: 7, userName: "Chloe", user: "brighton"),
+                // SizedBox(width: 50),
+              ],
             ),
-            Container(
-              width: 300.0,
-              height: 80,
-              margin: const EdgeInsets.only(top: 220.0, right: 220),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                // color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              child: const Center(
-                child: Text('Filters:',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              ),
-            ),
-            Container(
-              width: 100.0,
-              height: 30,
-              margin: const EdgeInsets.only(top: 245.0, left: 260),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                color: const Color(0xff40848F),
-              ),
-              child: const Center(
-                child: Text('< Weekly',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-            Container(
-              width: 100.0,
-              height: 30,
-              margin: const EdgeInsets.only(top: 245.0, left: 140),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                color: const Color(0xff40848F),
-              ),
-              child: const Center(
-                child: Text('< Primary',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-            Container(
-              width: 100.0,
-              height: 30,
-              margin: const EdgeInsets.only(top: 295.0, left: 50),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                color: const Color(0xff40848F),
-              ),
-              child: const Center(
-                child: Text('< Tuition',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    )),
-              ),
-            ),
-            Container(
-              width: 300.0,
-              height: 450,
-              margin: const EdgeInsets.only(top: 330.0, left: 40),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                color: const Color(0xffFFDF8F).withOpacity(0.8),
-              ),
-              child: SingleChildScrollView(
-                child: Stack(
-                  children: const <Widget>[
-                    CSBar(
-                        hours: 120,
-                        index: 1,
-                        userName: "Brighton",
-                        user: "brighton"),
-                    SizedBox(width: 50),
-                    CSBar(
-                        hours: 122,
-                        index: 2,
-                        userName: "Bukit Batok",
-                        user: "bukit"),
-                    SizedBox(width: 50),
-                    CSBar(
-                        hours: 103,
-                        index: 3,
-                        userName: "Heartware",
-                        user: "sg"),
-                    SizedBox(width: 50),
-                    // CSBar(hours: 97, index: 4, userName: "Charlotte", user: "brighton"),
-                    // SizedBox(width: 50),
-                    // CSBar(hours: 92, index: 5, userName: "Sam", user: "brighton"),
-                    // SizedBox(width: 50),
-                    // CSBar(hours: 89, index: 6, userName: "Paisley", user: "brighton"),
-                    // SizedBox(width: 50),
-                    // CSBar(hours: 88, index: 7, userName: "Chloe", user: "brighton"),
-                    // SizedBox(width: 50),
-                  ],
-                ),
-              ),
-            ),
-          ]),
+          ),
+        ),
+      ]),
     );
   }
 }

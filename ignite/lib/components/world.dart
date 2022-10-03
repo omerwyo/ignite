@@ -6,7 +6,6 @@ class World extends SpriteComponent with HasGameRef {
   Future<void>? onLoad() async {
     sprite = await gameRef.loadSprite('contri_map.png');
     size = sprite!.originalSize;
-    // print(size);
     return super.onLoad();
   }
 }
