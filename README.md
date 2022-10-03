@@ -1,4 +1,4 @@
-# ignite
+# ContriSide
 Repository for Google Ignite 2022
 
 [Christina Ayumi](https://github.com/christinaayumi)
