@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ignite.ignite">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="ignite"
         android:name="${applicationName}"
