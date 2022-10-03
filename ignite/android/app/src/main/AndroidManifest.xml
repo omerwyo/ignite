@@ -5,6 +5,8 @@
         android:label="ignite"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAV2wdkeOI6uMhFbe64I93Lg5295gpcBug"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

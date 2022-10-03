@@ -6,45 +6,54 @@ import 'helpers/direction.dart';
 import 'helpers/joypad.dart';
 import 'package:flame/game.dart';
 import 'contri_side_game.dart';
-import 'search_widget(REPLACE).dart'; //DELETE THIS
 import 'package:dio/dio.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Components
 class CSBar extends StatelessWidget {
   const CSBar({
     Key? key,
-    required this.hours,
+    required this.description,
+    required this.duration,
+    required this.subduration,
+    required this.name,
     required this.index,
-    required this.userName,
-    required this.user,
+    required this.org,
   }) : super(key: key);
 
-  final int hours;
+  final String description;
+  final String duration;
+  final String subduration;
+  final String name;
+  final String org;
   final int index; // used to assign avatar image
-  final String userName;
-  final String user;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         // Calculate width
         width: 285,
-        height: 115,
-        // margin: EdgeInsets.only(top: 70.0 + (index - 1) * 70, left: 5, bottom: 500),
-        margin: EdgeInsets.only(top: index * 150 - 130, left: 5),
+        height: 45,
+        margin: EdgeInsets.only(top: 30.0 + (index - 1) * 70, left: 5),
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          // color: const Color(0xff40848F).withOpacity(1),
+          borderRadius: const BorderRadius.all(Radius.circular(40)),
           color: const Color(0xff40848F).withOpacity(1),
         ),
         child: Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
-              width: 35.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/$user.png"),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const ProjectPage();
+                }));
+              },
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 5.0, left: 7.0),
+                width: 35.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/$org.png"),
+                  ),
                 ),
               ),
             ),
@@ -52,24 +61,12 @@ class CSBar extends StatelessWidget {
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  userName,
+                  name,
                   style: GoogleFonts.openSans(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 )),
-            const SizedBox(width: 5),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                '',
-                textAlign: TextAlign.right,
-                style: GoogleFonts.openSans(
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 20),
-              ),
-            ),
           ],
         ));
   }
@@ -191,6 +188,91 @@ class MainGameState extends State<MainGamePage> {
   }
 }
 
+// Map Page
+class ProjectPage extends StatefulWidget {
+  const ProjectPage({Key? key}) : super(key: key);
+
+  @override
+  ProjectPageState createState() => ProjectPageState();
+}
+
+class ProjectPageState extends State<ProjectPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // Completer<GoogleMapController> _controller = Completer();
+  late GoogleMapController mapController;
+  final LatLng _center = const LatLng(1.3126358495673822, 103.86288002621036);
+
+  // static final CameraPosition _kLake = CameraPosition(
+  //     bearing: 192.8334901395799,
+  //     target: LatLng(37.43296265331129, -122.08832357078792),
+  //     tilt: 59.440717697143555,
+  //     zoom: 19.151926040649414);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Trishaw - ENCSS',
+              style: TextStyle(color: Colors.black)),
+          backgroundColor: Color(0xffFFDF8F).withOpacity(1),
+        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 19.0,
+          ),
+        ),
+      ),
+    );
+  }
+}
+// return Scaffold(
+//   extendBodyBehindAppBar: true,
+//   appBar: AppBar(
+//     iconTheme: const IconThemeData(
+//       color: Colors.black,
+//     ),
+//     backgroundColor: Colors.transparent,
+//     elevation: 0,
+//   ),
+//   body: Stack(children: [
+//     Container(
+//       decoration: const BoxDecoration(
+//         image: DecorationImage(
+//           image: AssetImage("assets/images/background.png"),
+//           fit: BoxFit.cover,
+//         ),
+//       ),
+//     ),
+//     Container(
+//       width: 300.0,
+//       height: 80,
+//       margin: const EdgeInsets.only(top: 110.0, left: 40),
+//       decoration: const BoxDecoration(
+//         borderRadius: BorderRadius.all(Radius.circular(40)),
+//         color: Color.fromARGB(255, 255, 255, 255),
+//       ),
+//       child: const Center(
+//         child: Text('  Trishaw - En Community \n   Service Society (ECSS)',
+//             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+//       ),
+//       // 1.3126358495673822, 103.86288002621036
+//       // AIzaSyDE08KYKVqswikoGiOhRIwy039NIj9yR24
+//     ),
+//   ]),
+// );
+
 // Leaderboard Page
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -302,12 +384,6 @@ class LogInState extends State<LogInPage> {
               ),
             ),
             Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("assets/images/contrisidelogo.png"),
-              )),
-            ),
-            Container(
               width: 300.0,
               height: 80,
               margin: const EdgeInsets.only(top: 200.0, left: 40),
@@ -334,7 +410,7 @@ class LogInState extends State<LogInPage> {
                   : SingleChildScrollView(
                       child: Stack(
                         children: apidata.map<Widget>((user) {
-                          count += 1;
+                          count = (count % 7) + 1;
                           return Stack(children: [
                             LeaderBoardBar(
                                 hours: user['hours'],
@@ -360,6 +436,31 @@ class CSPage extends StatefulWidget {
 }
 
 class CSState extends State<CSPage> {
+  late Response response;
+  Dio dio = Dio();
+
+  bool loading = false; //for data fetching status
+  // ignore: prefer_typing_uninitialized_variables
+  var apidata; //for decoded JSON data
+  int count = 0;
+
+  @override
+  void initState() {
+    getData(); //fetching data
+    count = 0;
+    super.initState();
+  }
+
+  getData() async {
+    setState(() {
+      loading = true; //make loading true to show progressindicator
+    });
+    Response response = await dio.get('http://3.15.138.42/proj');
+    apidata = response.data; //get JSON decoded data from response
+    loading = false;
+    setState(() {}); //refresh UI
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -518,34 +619,25 @@ class CSState extends State<CSPage> {
             borderRadius: const BorderRadius.all(Radius.circular(40)),
             color: const Color(0xffFFDF8F).withOpacity(0.8),
           ),
-          child: SingleChildScrollView(
-            child: Stack(
-              children: const <Widget>[
-                CSBar(
-                    hours: 120,
-                    index: 1,
-                    userName: "Brighton",
-                    user: "brighton"),
-                SizedBox(width: 50),
-                CSBar(
-                    hours: 122,
-                    index: 2,
-                    userName: "Bukit Batok",
-                    user: "bukit"),
-                SizedBox(width: 50),
-                CSBar(hours: 103, index: 3, userName: "Heartware", user: "sg"),
-                SizedBox(width: 50),
-                // CSBar(hours: 97, index: 4, userName: "Charlotte", user: "brighton"),
-                // SizedBox(width: 50),
-                // CSBar(hours: 92, index: 5, userName: "Sam", user: "brighton"),
-                // SizedBox(width: 50),
-                // CSBar(hours: 89, index: 6, userName: "Paisley", user: "brighton"),
-                // SizedBox(width: 50),
-                // CSBar(hours: 88, index: 7, userName: "Chloe", user: "brighton"),
-                // SizedBox(width: 50),
-              ],
-            ),
-          ),
+          child: loading
+              ? const CircularProgressIndicator()
+              : SingleChildScrollView(
+                  child: Stack(
+                    children: apidata.map<Widget>((project) {
+                      count = (count % 17) + 1;
+                      return Stack(children: [
+                        CSBar(
+                            description: project['description'],
+                            duration: project['duration'],
+                            subduration: project['subduration'],
+                            index: count,
+                            org: project['org'],
+                            name: project['name']),
+                        const SizedBox(width: 50)
+                      ]);
+                    }).toList(),
+                  ),
+                ),
         ),
       ]),
     );
