@@ -7,6 +7,7 @@ import 'helpers/direction.dart';
 import 'helpers/joypad.dart';
 import 'package:flame/game.dart';
 import 'contri_side_game.dart';
+import 'search_widget(REPLACE).dart'; //DELETE THIS
 import 'package:dio/dio.dart';
 
 // Components
@@ -18,6 +19,7 @@ class CSBar extends StatelessWidget {
     required this.userName,
     required this.user,
   }) : super(key: key);
+
 
   final int hours;
   final int index; // used to assign avatar image
@@ -429,6 +431,109 @@ class CSState extends State<CSPage> {
                 ),
               ),
             ),
+          ),
+          Container(
+            child: Center(
+              child: Text('Leaderboard',
+              style: TextStyle(
+                fontSize: 28, 
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 300.0,
+            height: 80,
+            margin: const EdgeInsets.only(top: 200.0, left: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('',
+              style: TextStyle(
+                fontSize: 28, 
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 300.0,
+            height: 450,
+            margin: const EdgeInsets.only(top: 330.0, left: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xffFFDF8F).withOpacity(0.8),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('        Cheryl              |   112',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 270.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 377.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('       Samuel        |   110',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 250.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 447.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            child: Center(
+              child: Text('        Patrick      |   105',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold)),
+            ),
+            width: 235.0,
+            height: 45,
+            margin: const EdgeInsets.only(top: 517.0, left: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              color: Color(0xff40848F).withOpacity(1),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 70.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar1.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 210.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar2.png"),
+            ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 350.0, left: 70.0),
+            width: 35.0,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/avatar3.png"),
             Container(
               width: 300.0,
               height: 80,
