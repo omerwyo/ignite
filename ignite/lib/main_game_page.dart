@@ -3,6 +3,7 @@ import 'helpers/direction.dart';
 import 'helpers/joypad.dart';
 import 'package:flame/game.dart';
 import 'contri_side_game.dart';
+import 'search_widget(REPLACE).dart'; //DELETE THIS
 
 class MainGamePage extends StatefulWidget {
   const MainGamePage({Key? key}) : super(key: key);
@@ -84,27 +85,33 @@ class LogInState extends State<LogInPage> {
               title: const Text('Map'),
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const MainGamePage();
+                }
                 // Then close the drawer
-                Navigator.pop(context);
+                ));
               },
             ),
             ListTile(
               title: const Text('Leaderboard'),
               onTap: () {
-                // Update the state of the app
-                // ...
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const LogInPage();
+                }
+                  // Then close the drawer
+                ));
                 // Then close the drawer
-                Navigator.pop(context);
               },
             ),
             ListTile(
               title: const Text('Search'),
               onTap: () {
                 // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const Search(); // CHANGE THIS
+                }
+                  // Then close the drawer
+                ));
               },
             ),
           ],
@@ -219,7 +226,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(bottom: 45.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 70.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
@@ -228,7 +235,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 95.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 210.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
@@ -237,7 +244,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 235.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 350.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
@@ -246,7 +253,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 490.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
@@ -255,7 +262,7 @@ class LogInState extends State<LogInPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 375.0, left: 70.0),
+            margin: const EdgeInsets.only(top: 630.0, left: 70.0),
             width: 35.0,
             decoration: BoxDecoration(
             image: DecorationImage(
