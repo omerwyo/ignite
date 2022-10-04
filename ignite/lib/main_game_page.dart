@@ -202,15 +202,8 @@ class ProjectPageState extends State<ProjectPage> {
     super.initState();
   }
 
-  // Completer<GoogleMapController> _controller = Completer();
   late GoogleMapController mapController;
   final LatLng _center = const LatLng(1.3126358495673822, 103.86288002621036);
-
-  // static final CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.43296265331129, -122.08832357078792),
-  //     tilt: 59.440717697143555,
-  //     zoom: 19.151926040649414);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -237,41 +230,6 @@ class ProjectPageState extends State<ProjectPage> {
     );
   }
 }
-// return Scaffold(
-//   extendBodyBehindAppBar: true,
-//   appBar: AppBar(
-//     iconTheme: const IconThemeData(
-//       color: Colors.black,
-//     ),
-//     backgroundColor: Colors.transparent,
-//     elevation: 0,
-//   ),
-//   body: Stack(children: [
-//     Container(
-//       decoration: const BoxDecoration(
-//         image: DecorationImage(
-//           image: AssetImage("assets/images/background.png"),
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//     ),
-//     Container(
-//       width: 300.0,
-//       height: 80,
-//       margin: const EdgeInsets.only(top: 110.0, left: 40),
-//       decoration: const BoxDecoration(
-//         borderRadius: BorderRadius.all(Radius.circular(40)),
-//         color: Color.fromARGB(255, 255, 255, 255),
-//       ),
-//       child: const Center(
-//         child: Text('  Trishaw - En Community \n   Service Society (ECSS)',
-//             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-//       ),
-//       // 1.3126358495673822, 103.86288002621036
-//       // AIzaSyDE08KYKVqswikoGiOhRIwy039NIj9yR24
-//     ),
-//   ]),
-// );
 
 // Leaderboard Page
 class LogInPage extends StatefulWidget {
